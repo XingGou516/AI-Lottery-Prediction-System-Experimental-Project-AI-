@@ -21,8 +21,8 @@ def xlsx_to_csv(xlsx_file, csv_file):
         print(df.head())
         
         # 处理数据格式，确保个位数保留前置零
-        # 第二到六列为红色球号，第七列为蓝色球号，需要格式化为两位数
-        for col in range(1, 7):  # 第二到第七列（索引1-6）
+        # 第二到七列为红色球号，第八列为蓝色球号，需要格式化为两位数
+        for col in range(1, 8):  # 第二到第八列（索引1-7）
             if col < len(df.columns):
                 df[col] = df[col].astype(int).apply(lambda x: f"{x:02d}")
         
