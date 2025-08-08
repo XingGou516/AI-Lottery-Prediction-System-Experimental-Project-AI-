@@ -225,8 +225,8 @@ python final_recommendations.py     # 查看最终建议
 
 如有技术问题或建议，欢迎通过以下方式联系：
 
-- 邮箱: [XingfeiZeng@outlook.com]
-- 问题反馈: [GitHub Issues](https://github.com/your-repo/issues)
+- 邮箱: [xinggou516@outlook.com]
+- 问题反馈: [GitHub Issues](https://github.com/XingGou516/AI-Lottery-Prediction-System-Experimental-Project-AI-/issues)
 
 ---
 

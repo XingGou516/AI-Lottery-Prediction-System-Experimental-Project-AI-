@@ -257,8 +257,8 @@ This project uses MIT License - see [LICENSE](LICENSE) file for details
 
 For technical questions or suggestions, please contact through:
 
-- Email: [XingfeiZeng@outlook.com]
-- Issue Feedback: [GitHub Issues](https://github.com/your-repo/issues)
+- Email: [xinggou516@outlook.com]
+- Issue Feedback: [GitHub Issues](https://github.com/XingGou516/AI-Lottery-Prediction-System-Experimental-Project-AI-/issues)
 
 ---
 
