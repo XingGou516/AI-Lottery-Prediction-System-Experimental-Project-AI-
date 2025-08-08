@@ -1,3 +1,10 @@
+"""
+第一步：Excel数据转换为CSV格式
+- 处理原始xlsx文件
+- 格式化号码（保证两位数格式）
+- 输出标准CSV格式
+"""
+
 import pandas as pd
 import os
 
@@ -38,15 +45,15 @@ def xlsx_to_csv(xlsx_file, csv_file):
 
 def main():
     # 设置文件路径
-    xlsx_file = "data.xlsx"
-    csv_file = "data.csv"
+    xlsx_file = "../data.xlsx"
+    csv_file = "../data.csv"
     
     # 检查xlsx文件是否存在
     if not os.path.exists(xlsx_file):
         print(f"错误：找不到文件 {xlsx_file}")
         return
     
-    print("开始处理xlsx文件...")
+    print("=== 步骤1：Excel数据转换 ===")
     success = xlsx_to_csv(xlsx_file, csv_file)
     
     if success:

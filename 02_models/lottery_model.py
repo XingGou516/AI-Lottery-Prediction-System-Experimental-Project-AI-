@@ -1,3 +1,10 @@
+"""
+核心模型定义
+- 彩票数据集类：处理时间序列数据
+- LSTM预测模型：双分支架构分别预测红球和蓝球
+- 数据加载和预处理函数
+"""
+
 import torch
 import torch.nn as nn
 import pandas as pd
@@ -7,7 +14,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 class LotteryDataset(Dataset):
-    """彩票数据集类"""
+    """彩票数据集类 - 处理时间序列数据"""
     def __init__(self, data, sequence_length=12):
         self.data = data
         self.sequence_length = sequence_length
@@ -19,6 +26,8 @@ class LotteryDataset(Dataset):
     
     def _prepare_data(self):
         """准备训练数据"""
+        print(f"准备数据序列，序列长度：{self.sequence_length}")
+        
         for i in range(len(self.data) - self.sequence_length):
             # 输入序列：过去sequence_length期的数据 (包含期号)
             sequence = self.data[i:i+self.sequence_length]
@@ -33,6 +42,8 @@ class LotteryDataset(Dataset):
             self.samples.append(sequence)
             self.targets_red.append(red_balls)
             self.targets_blue.append(blue_ball)
+        
+        print(f"生成样本数量: {len(self.samples)}")
     
     def __len__(self):
         return len(self.samples)
@@ -45,8 +56,8 @@ class LotteryDataset(Dataset):
         return sequence, red_target, blue_target
 
 class LotteryPredictor(nn.Module):
-    """彩票预测网络"""
-    def __init__(self, input_size=8, hidden_size=128, num_layers=2, dropout=0.2):  # 改回8
+    """彩票预测网络 - 双分支LSTM架构"""
+    def __init__(self, input_size=8, hidden_size=128, num_layers=2, dropout=0.2):
         super(LotteryPredictor, self).__init__()
         
         # 共享的LSTM特征提取层
@@ -147,3 +158,12 @@ def analyze_data(data):
     print("\n蓝球出现频率:")
     blue_freq = pd.Series(blue_balls).value_counts().sort_index()
     print(blue_freq)
+
+def get_model_info():
+    """获取模型基本信息"""
+    print("\n=== 模型架构信息 ===")
+    print("输入维度: 8 (期号 + 6个红球 + 1个蓝球)")
+    print("序列长度: 12期")
+    print("LSTM隐藏层: 128维, 2层")
+    print("输出: 红球33维概率 + 蓝球16维概率")
+    print("总参数量: 约20万个")
